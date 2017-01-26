@@ -4,7 +4,7 @@ from datetime import datetime
 import sys
 
 
-VERSION = (2, 2, 0)
+VERSION = (2, 2, 1)
 
 default_app_config = 'dbmail.apps.DBMailConfig'
 
@@ -31,7 +31,11 @@ def celery_supported():
 
 
 def db_sender(slug, recipient, *args, **kwargs):
-    from django.utils.importlib import import_module
+    try:
+        from django.utils.importlib import import_module
+    except ImportError:
+        from importlib import import_module
+
     from dbmail.defaults import (
         CELERY_QUEUE, SEND_MAX_TIME, ENABLE_CELERY, BACKEND, DEBUG)
     from dbmail.models import MailTemplate
@@ -186,7 +190,10 @@ def import_by_string(dotted_path):
 
     # Django == 1.4
 
-    from django.utils.importlib import import_module
+    try:
+        from django.utils.importlib import import_module
+    except ImportError:
+        from importlib import import_module
 
     class_data = dotted_path.split('.')
     module_path = '.'.join(class_data[:-1])

@@ -1,6 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-from django.utils.importlib import import_module
+try:
+    from django.utils.importlib import import_module
+except ImportError:
+    from importlib import import_module
+
 from django.utils.html import strip_tags
 
 

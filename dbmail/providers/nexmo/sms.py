@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
-
-from urllib import urlopen, urlencode
+import sys
 from json import loads
+
+if sys.version_info.major > 2:
+    from urllib.parse import urlencode
+    from urllib.request import urlopen
+else:
+    from urllib import urlopen, urlencode
 
 from django.conf import settings
 
