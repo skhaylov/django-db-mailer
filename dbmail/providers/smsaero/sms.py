@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from httplib import HTTPConnection
-from urllib import urlencode
+import sys
+
+
+if sys.version_info.major > 2:
+    from http.client import HTTPConnection
+    from urllib.parse import urlencode
+else:
+    from httplib import HTTPConnection
+    from urllib import urlencode
 
 from django.conf import settings
 

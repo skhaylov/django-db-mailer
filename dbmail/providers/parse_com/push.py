@@ -1,6 +1,11 @@
 # -*- encoding: utf-8 -*-
 
-from httplib import HTTPSConnection
+import sys
+if sys.version_info.major > 2:
+    from http.client import HTTPSConnection
+else:
+    from httplib import HTTPSConnection
+
 from json import dumps, loads
 
 from django.conf import settings

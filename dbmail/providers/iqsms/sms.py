@@ -1,7 +1,12 @@
 # -*- encoding: utf-8 -*-
 
+import sys
 from httplib import HTTPConnection
-from urllib import urlencode
+
+if sys.version_info.major > 2:
+    from urllib.request import urlencode
+else:
+    from urllib import urlencode
 from base64 import b64encode
 
 from django.conf import settings

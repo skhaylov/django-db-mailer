@@ -1,7 +1,13 @@
 # -*- encoding: utf-8 -*-
 
-from httplib import HTTPSConnection
-from urllib import urlencode
+import sys
+
+if sys.version_info.major > 2:
+    from http.client import HTTPSConnection
+    from urllib.parse import urlencode
+else:
+    from httplib import HTTPSConnection
+    from urllib import urlencode
 
 from django.conf import settings
 from dbmail import get_version
